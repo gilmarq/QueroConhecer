@@ -46,7 +46,6 @@
 		7C63CBE3261B84C400560823 = {
 			isa = PBXGroup;
 			children = (
-				7C63CC09261D698E00560823 /* Place.swift */,
 				7C63CBEE261B84C500560823 /* QueroConhecer */,
 				7C63CBED261B84C500560823 /* Products */,
 			);
@@ -66,6 +65,7 @@
 				7C63CBEF261B84C500560823 /* AppDelegate.swift */,
 				7C63CBF1261B84C500560823 /* SceneDelegate.swift */,
 				7C63CC07261C24E800560823 /* PlaceFinderViewController.swift */,
+				7C63CC09261D698E00560823 /* Place.swift */,
 				7C63CC05261C1E5600560823 /* MapViewController.swift */,
 				7C63CC03261C0A7B00560823 /* PlacesTableViewController.swift */,
 				7C63CBF5261B84C500560823 /* Main.storyboard */,

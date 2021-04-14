@@ -13,11 +13,11 @@ struct Place {
 
     let name: String
     let latitude: CLLocationDegrees
-    let longetude: CLLocationDegrees
+    let longitude: CLLocationDegrees
     let address: String
 
     var coordinate: CLLocationCoordinate2D{
-        return CLLocationCoordinate2D(latitude: latitude, longitude: longetude)
+        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
 
     static func getFormatterAdress(with placemark: CLPlacemark) -> String {
@@ -38,7 +38,7 @@ struct Place {
             address += " - \(state)"
         }
         if let postalCode  = placemark.postalCode {
-            address += "\nCEP: \(postalCode)"
+            address += "\n CEP: \(postalCode)"
         }
 
         if let country  = placemark.country {
