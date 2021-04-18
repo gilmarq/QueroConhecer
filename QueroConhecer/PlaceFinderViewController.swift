@@ -9,19 +9,29 @@
 import UIKit
 import MapKit
 
-enum PlaceFinderMessageType {
-    case error(String)
-    case confirmation(String)
+//MARK: - delegate
+protocol PlacesFindeDelegate: class {
+    func  addPlaces(_ place: Place)
 }
 
+
 class PlaceFinderViewController: UIViewController {
+
+    //MARK: - enum
+    enum PlaceFinderMessageType {
+        case error(String)
+        case confirmation(String)
+    }
 
     //MARK: - outlet
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tfCity: UITextField!
     @IBOutlet weak var viewLoanding: UIView!
     @IBOutlet weak var loanding: UIActivityIndicatorView!
+
+    //MARK: - variable
     var  place: Place!
+    weak var delegate: PlacesFindeDelegate?
 
     //MARK: - life cyclo
     override func viewDidLoad() {
@@ -40,8 +50,7 @@ class PlaceFinderViewController: UIViewController {
         load(show: true)
         let geoCode = CLGeocoder()
         geoCode.geocodeAddressString(address) { (placemark, error) in
-            self.load(show: false)
-            //self.loadGeoLocation(error as! Error, placemark:placemark)
+            self.load(show: false) 
             if error == nil {
                 if !self.savePlace(with: placemark?.first) {
 
@@ -58,7 +67,6 @@ class PlaceFinderViewController: UIViewController {
     func loadGeoLocation(_ error:Error, placemark: CLPlacemark) {
       self.load(show: false)
         if error == nil {
-
             if !self.savePlace(with: placemark) {
 
                 self.showMessager(type: .error("Não encontrado nenhum local com este nome ") )
@@ -130,12 +138,12 @@ class PlaceFinderViewController: UIViewController {
         alert.addAction(cancelAction)
         if hasConfirmation {
             let confirmeAction = UIAlertAction(title: "Ok", style: .default) { (action) in
-                print("ok")
+                self.delegate?.addPlaces(self.place)
+                self.dismiss(animated: true, completion: nil)
             }
             alert.addAction(confirmeAction)
         }
         present(alert, animated: true, completion: nil)
-
     }
 
     func  load(show: Bool) {

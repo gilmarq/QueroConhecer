@@ -272,7 +272,7 @@ por  2 segundos </string>
                         <barButtonItem key="backBarButtonItem" title=" " id="OtH-9F-IYp"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="z9I-aP-Sk0">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="presentation" modalPresentationStyle="overFullScreen" id="zes-UG-svv"/>
+                                <segue destination="BYZ-38-t0r" kind="presentation" identifier="finderSegue" modalPresentationStyle="overFullScreen" id="zes-UG-svv"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
