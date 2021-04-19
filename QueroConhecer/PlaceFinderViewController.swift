@@ -53,8 +53,13 @@ class PlaceFinderViewController: UIViewController {
             self.load(show: false) 
             if error == nil {
                 if !self.savePlace(with: placemark?.first) {
-
-                    self.showMessager(type: .error("Não encontrado nenhum local com este nome ") )
+                    self.showMessager(type: .error("Não encontrado nenhum local com este nome") )
+                } else {
+                    self.showMessager(type: .error("Local Desconhecido"))
+                }
+            }else  if error != nil {
+                if !self.savePlace(with: placemark?.first) {
+                    self.showMessager(type: .error("Não encontrado nenhum local com este nome") )
                 } else {
                     self.showMessager(type: .error("Local Desconhecido"))
                 }
@@ -62,13 +67,17 @@ class PlaceFinderViewController: UIViewController {
         }
     }
 
-    //MARK: - method
-
+    //MARK: - methods
     func loadGeoLocation(_ error:Error, placemark: CLPlacemark) {
-      self.load(show: false)
+        self.load(show: false)
         if error == nil {
             if !self.savePlace(with: placemark) {
-
+                self.showMessager(type: .error("Não encontrado nenhum local com este nome ") )
+            } else {
+                self.showMessager(type: .error("Local Desconhecido"))
+            }
+        } else if error != nil {
+            if !self.savePlace(with: placemark) {
                 self.showMessager(type: .error("Não encontrado nenhum local com este nome ") )
             } else {
                 self.showMessager(type: .error("Local Desconhecido"))
@@ -90,7 +99,15 @@ class PlaceFinderViewController: UIViewController {
             let geoLocation = CLGeocoder()
             geoLocation.reverseGeocodeLocation(location) { (placemark, error) in
                 self.load(show: false)
+
                 if error == nil {
+                    if !self.savePlace(with: placemark?.first) {
+
+                        self.showMessager(type: .error("Não encontrado nenhum local com este nome ") )
+                    } else {
+                        self.showMessager(type: .error("Local Desconhecido"))
+                    }
+                } else if error != nil {
                     if !self.savePlace(with: placemark?.first) {
 
                         self.showMessager(type: .error("Não encontrado nenhum local com este nome ") )
