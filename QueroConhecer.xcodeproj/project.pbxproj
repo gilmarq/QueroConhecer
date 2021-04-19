@@ -16,6 +16,7 @@
 		7C63CC06261C1E5600560823 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C63CC05261C1E5600560823 /* MapViewController.swift */; };
 		7C63CC08261C24E800560823 /* PlaceFinderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C63CC07261C24E800560823 /* PlaceFinderViewController.swift */; };
 		7C63CC0A261D698E00560823 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C63CC09261D698E00560823 /* Place.swift */; };
+		7C63CC0E262D1E2800560823 /* PlaceAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C63CC0D262D1E2800560823 /* PlaceAnnotation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		7C63CC05261C1E5600560823 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		7C63CC07261C24E800560823 /* PlaceFinderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceFinderViewController.swift; sourceTree = "<group>"; };
 		7C63CC09261D698E00560823 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		7C63CC0D262D1E2800560823 /* PlaceAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceAnnotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				7C63CBF8261B84C700560823 /* Assets.xcassets */,
 				7C63CBFA261B84C700560823 /* LaunchScreen.storyboard */,
 				7C63CBFD261B84C700560823 /* Info.plist */,
+				7C63CC0D262D1E2800560823 /* PlaceAnnotation.swift */,
 			);
 			path = QueroConhecer;
 			sourceTree = "<group>";
@@ -153,6 +156,7 @@
 				7C63CC0A261D698E00560823 /* Place.swift in Sources */,
 				7C63CC06261C1E5600560823 /* MapViewController.swift in Sources */,
 				7C63CBF2261B84C500560823 /* SceneDelegate.swift in Sources */,
+				7C63CC0E262D1E2800560823 /* PlaceAnnotation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
