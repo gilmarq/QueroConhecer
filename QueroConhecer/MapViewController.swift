@@ -17,15 +17,17 @@ class MapViewController: UIViewController {
     @IBOutlet weak var viInfo: UIView!
     @IBOutlet weak var lbName: UILabel!
     @IBOutlet weak var lbAddress: UILabel!
+    @IBOutlet weak var loading: UIActivityIndicatorView!
 
     //MARK: - variable
     var places: [Place]!
+    var poi: [MKAnnotation] = []
 
-     //MARK: - life cyclo
+    //MARK: - life cyclo
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
-
+        mapView.mapType = .mutedStandard
 
         for place in places {
             addToMap(place)
@@ -34,7 +36,7 @@ class MapViewController: UIViewController {
         setupView()
     }
 
-     //MARK: - methods
+    //MARK: - methods
     func addToMap(_ place:Place) {
         let annotation = PlaceAnnotation(coordinate: place.coordinate, type: .place)
         annotation.coordinate = place.coordinate
@@ -62,6 +64,8 @@ class MapViewController: UIViewController {
     }
     
     @IBAction func showSearchBar(_ sender: Any) {
+        searchBar.resignFirstResponder()
+        searchBar.isHidden = !searchBar.isHidden
     }
 }
 
@@ -83,10 +87,44 @@ extension MapViewController: MKMapViewDelegate {
         annotationView?.annotation = annotation
         annotationView?.canShowCallout = true
         annotationView?.markerTintColor = type == .place ? UIColor(named: "main"): UIColor(named: "poi")
-       annotationView?.glyphImage = type == .place ? UIImage(named: "placeGlyph") :  UIImage(named: "poiGlyph")
+        annotationView?.glyphImage = type == .place ? UIImage(named: "placeGlyph") :  UIImage(named: "poiGlyph")
         annotationView?.displayPriority = type == .place ? .required  : .defaultHigh
 
 
         return annotationView
+    }
+}
+
+extension MapViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.isHidden = true
+        searchBar.resignFirstResponder()
+        loading.startAnimating()
+
+        let request = MKLocalSearch.Request()
+        request.naturalLanguageQuery = searchBar.text
+        request.region = mapView.region
+        let search = MKLocalSearch(request: request)
+
+        search.start { (response , error) in
+            if error == nil {
+                guard let response = response else {
+                    self.loading.stopAnimating()
+                    return
+                }
+                self.mapView.removeAnnotations(self.poi)
+                self.poi.removeAll()
+                for item in response.mapItems {
+                    let annotation  =  PlaceAnnotation(coordinate: item.placemark.coordinate, type: .poi)
+                    annotation.title = item.name
+                    annotation.subtitle = item.phoneNumber
+                    annotation.address = Place.getFormatterAdress(with: item.placemark)
+                    self.poi.append(annotation)
+                }
+                self.mapView.addAnnotations(self.poi)
+                self.mapView.showAnnotations(self.poi, animated: true)
+            }
+            self.loading.stopAnimating()
+        }
     }
 }

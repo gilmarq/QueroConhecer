@@ -199,15 +199,21 @@ por  2 segundos </string>
                                     </view>
                                 </subviews>
                             </stackView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="cIT-MN-3ZZ">
+                                <rect key="frame" x="188.5" y="441.5" width="37" height="37"/>
+                                <color key="color" name="main"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="cIT-MN-3ZZ" firstAttribute="centerX" secondItem="bsY-94-X0D" secondAttribute="centerX" id="33S-s0-fjd"/>
                             <constraint firstItem="cOK-Yk-hGD" firstAttribute="trailing" secondItem="mfl-3d-T6Q" secondAttribute="trailing" constant="-10" id="8Oi-up-Fcq"/>
                             <constraint firstItem="EsJ-cO-mQb" firstAttribute="leading" secondItem="mfl-3d-T6Q" secondAttribute="leading" id="E5x-b9-Yd9"/>
                             <constraint firstAttribute="bottom" secondItem="EsJ-cO-mQb" secondAttribute="bottom" id="S8p-Hg-yHr"/>
                             <constraint firstAttribute="bottom" secondItem="cOK-Yk-hGD" secondAttribute="bottom" constant="10" id="SCS-dK-4A1"/>
                             <constraint firstItem="cOK-Yk-hGD" firstAttribute="leading" secondItem="mfl-3d-T6Q" secondAttribute="leading" constant="10" id="bO5-mD-wj9"/>
                             <constraint firstItem="mfl-3d-T6Q" firstAttribute="trailing" secondItem="EsJ-cO-mQb" secondAttribute="trailing" id="iLa-Mm-PQ8"/>
+                            <constraint firstItem="cIT-MN-3ZZ" firstAttribute="centerY" secondItem="bsY-94-X0D" secondAttribute="centerY" id="nEg-qN-aVm"/>
                             <constraint firstItem="EsJ-cO-mQb" firstAttribute="top" secondItem="mfl-3d-T6Q" secondAttribute="top" id="szb-iU-oDv"/>
                             <constraint firstItem="cOK-Yk-hGD" firstAttribute="top" secondItem="mfl-3d-T6Q" secondAttribute="top" constant="10" id="tbw-KB-3Lh"/>
                         </constraints>
@@ -223,6 +229,7 @@ por  2 segundos </string>
                     <connections>
                         <outlet property="lbAddress" destination="AMp-mT-z9q" id="Y7m-xR-4It"/>
                         <outlet property="lbName" destination="YgF-1Q-Glb" id="VLJ-Nk-jZY"/>
+                        <outlet property="loading" destination="cIT-MN-3ZZ" id="Dq0-oh-YaQ"/>
                         <outlet property="mapView" destination="bsY-94-X0D" id="ILN-iv-IHa"/>
                         <outlet property="searchBar" destination="8fK-U4-kGs" id="XIg-E3-7p3"/>
                         <outlet property="viInfo" destination="aVZ-zo-xnW" id="W0A-Fd-AS7"/>
