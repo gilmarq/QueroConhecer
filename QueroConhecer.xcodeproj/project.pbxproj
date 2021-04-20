@@ -71,10 +71,10 @@
 				7C63CC05261C1E5600560823 /* MapViewController.swift */,
 				7C63CC03261C0A7B00560823 /* PlacesTableViewController.swift */,
 				7C63CBF5261B84C500560823 /* Main.storyboard */,
+				7C63CC0D262D1E2800560823 /* PlaceAnnotation.swift */,
 				7C63CBF8261B84C700560823 /* Assets.xcassets */,
 				7C63CBFA261B84C700560823 /* LaunchScreen.storyboard */,
 				7C63CBFD261B84C700560823 /* Info.plist */,
-				7C63CC0D262D1E2800560823 /* PlaceAnnotation.swift */,
 			);
 			path = QueroConhecer;
 			sourceTree = "<group>";

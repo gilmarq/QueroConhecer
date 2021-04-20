@@ -153,7 +153,7 @@ por  2 segundos </string>
                                             <outlet property="delegate" destination="zKT-Y7-1CX" id="UP1-Fk-OYM"/>
                                         </connections>
                                     </searchBar>
-                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="hybrid" translatesAutoresizingMaskIntoConstraints="NO" id="bsY-94-X0D">
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="hybrid" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bsY-94-X0D">
                                         <rect key="frame" x="0.0" y="50" width="394" height="520"/>
                                     </mapView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aVZ-zo-xnW">

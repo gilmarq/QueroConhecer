@@ -25,14 +25,8 @@ class PlaceAnnotation: NSObject, MKAnnotation {
     var address: String?
 
     //MARK: - init
-     init(coordinate: CLLocationCoordinate2D, type: PlaceType ) {
+    init(coordinate: CLLocationCoordinate2D, type: PlaceType ) {
         self.coordinate = coordinate
         self.type = type
     }
-
-
-
-
-
-
-    }
+}
