@@ -9,7 +9,7 @@
 import Foundation
 import MapKit
 
-class PlaceAnnotation: NSObject, MKAnnotation {
+class PlaceAnnotation: NSObject, MKAnnotation{
 
     //MARK: - enum
     enum PlaceType {
@@ -21,11 +21,11 @@ class PlaceAnnotation: NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
     var title: String?
     var subtitle: String?
-    var  type: PlaceType
+    var type: PlaceType
     var address: String?
 
     //MARK: - init
-    init(coordinate: CLLocationCoordinate2D, type: PlaceType ) {
+    init(coordinate: CLLocationCoordinate2D, type: PlaceType) {
         self.coordinate = coordinate
         self.type = type
     }

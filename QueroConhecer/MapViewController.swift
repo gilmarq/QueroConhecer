@@ -30,13 +30,13 @@ class MapViewController: UIViewController {
     var poi: [MKAnnotation] = []
     lazy var locationManager = CLLocationManager()
     var btUserLocation: MKUserTrackingButton!
+    var selectedAnnotaion: PlaceAnnotation?
 
     //MARK: - life cyclo
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
         locationManager.delegate = self
-
         mapView.mapType = .mutedStandard
 
         for place in places {
@@ -45,21 +45,22 @@ class MapViewController: UIViewController {
 
         showPlaces()
         configurelocationButton()
-
         setupView()
     }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
          requestUserLocationAuthorization()
          locationManager.requestWhenInUseAuthorization()
-
     }
 
     //MARK: - methods
     func addToMap(_ place:Place) {
+
         let annotation = PlaceAnnotation(coordinate: place.coordinate, type: .place)
-        annotation.coordinate = place.coordinate
+        //annotation.coordinate = place.coordinate
         annotation.title = place.name
+        annotation.address = place.address
         mapView.addAnnotation(annotation)
     }
 
@@ -136,11 +137,17 @@ class MapViewController: UIViewController {
         btUserLocation.layer.masksToBounds = true
         btUserLocation.layer.borderWidth = 1
         btUserLocation.layer.borderColor = UIColor(named: "main")?.cgColor
+    }
 
+    func showInfo() {
+        lbName.text = selectedAnnotaion!.title
+       lbAddress.text = selectedAnnotaion!.address
+        viInfo.isHidden = false
     }
 
     //MARK: = action
     @IBAction func showRoute(_ sender: Any) {
+
     }
     
     @IBAction func showSearchBar(_ sender: Any) {
@@ -156,6 +163,7 @@ extension MapViewController: MKMapViewDelegate {
         if !(annotation is PlaceAnnotation){
             return nil
         }
+
         let type = (annotation as! PlaceAnnotation).type
         let identifier  = "\(type)"
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView
@@ -170,11 +178,23 @@ extension MapViewController: MKMapViewDelegate {
         annotationView?.glyphImage = type == .place ? UIImage(named: "placeGlyph") :  UIImage(named: "poiGlyph")
         annotationView?.displayPriority = type == .place ? .required  : .defaultHigh
 
-
         return annotationView
     }
-}
 
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        selectedAnnotaion = (view.annotation as! PlaceAnnotation)
+
+        let camera = MKMapCamera()
+        camera .centerCoordinate = view.annotation!.coordinate
+        camera.pitch = 80 // angulo da camera
+        camera.altitude = 100
+        mapView.setCamera(camera, animated: true)
+
+        showInfo()
+
+    }
+}
+//MARK: - UISearchBarDelegate
 extension MapViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.isHidden = true
@@ -209,6 +229,7 @@ extension MapViewController: UISearchBarDelegate {
     }
 }
 
+//MARK: - CLLocationManagerDelegate
 extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
@@ -219,9 +240,5 @@ extension MapViewController: CLLocationManagerDelegate {
             default:
                 break
         }
-    }
-
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print(locations.last!)
     }
 }
